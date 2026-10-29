@@ -1,6 +1,6 @@
 ---
 title: Neural Network in C, From Scratch
-summary: A handwritten-digit classifier written in plain C with no machine-learning libraries, trained on the 60,000-image MNIST set.
+summary: A handwritten-digit classifier written in plain C with no machine-learning libraries, trained on the 60,000-image MNIST set. It gets about 98% of test digits right.
 spec: ["C", "784-64-10 network", "Mini-batch SGD", "MNIST"]
 category: Machine learning
 status: Complete
@@ -20,7 +20,7 @@ I wanted to understand what a deep-learning framework actually does, so I wrote 
 
 ## What it is
 
-A two-layer network that reads a 28×28 MNIST digit (784 inputs), passes it through a hidden layer of 64 ReLU neurons, and outputs probabilities for the ten digits with softmax. That's 858 neurons in total. It trains on the 60,000 training images and is scored on the 10,000 test images.
+A two-layer network that reads a 28×28 MNIST digit (784 inputs), passes it through a hidden layer of 64 ReLU neurons, and outputs probabilities for the ten digits with softmax. That's 858 neurons in total. It trains on the 60,000 training images and is scored on the 10,000 test images, which it never sees during training. It classifies about 98% of them correctly.
 
 ## How it works
 

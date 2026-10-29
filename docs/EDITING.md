@@ -115,7 +115,7 @@ Skills and coursework are in `src/data/skills.ts`.
 Your resume is `public/resume.pdf`. Download links for it appear in the home page buttons, on the Experience and Contact pages and in the footer. To update it:
 
 1. Edit the resume in Overleaf, then download the PDF (**Recompile**, then the download icon).
-2. Remove your phone number and home address from the version you publish, because the file is public. The easiest way is to keep a second copy of the header line without the phone number and use it when you export for the site.
+2. Remember the file is public: anyone who visits can download it, including the phone number in the header.
 3. Replace `public/resume.pdf` with the new file, keeping the name `resume.pdf`, and commit.
 
 Visitors' browsers save it as `Rohan-Patrick-Jr-Resume.pdf`. Change `resumeFileName` in `src/config/site.ts` to rename it, or set `resumePdf: null` to hide every download link.

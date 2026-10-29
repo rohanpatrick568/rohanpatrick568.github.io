@@ -34,7 +34,6 @@ These were left out because I had no source for them. Add any you'd like public:
 
 - **Hobbies and interests outside engineering.** The About page currently covers music (band), community (RA, NSBE) and your side projects. Tell me what you do for fun and it can get its own line.
 - **Your instrument** in the Marching & Spirit Band.
-- **NN-in-C test accuracy.** The page describes the network (784-64-10) but gives no accuracy, because I couldn't find a recorded result. If you run it, add the number and a screenshot.
 - **Senior design results.** Once the team compares the prototype against the reference meter, add the measured result to `mesonet-sound-meter.md`.
 - **Blog posts.** The blog has a finished empty state and a template. `docs/EDITING.md` lists post ideas drawn from your existing work.
 - **What kind of role you're looking for**, in your words, if you want to say more than the current "Now" update.
