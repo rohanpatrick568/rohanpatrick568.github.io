@@ -13,7 +13,7 @@ export const SITE = {
   // Placeholder photos show a note explaining which picture belongs there.
   // Set this to false before you publish if you'd rather visitors see a
   // quiet illustrated fallback instead of the instructions.
-  showPlaceholderNotes: true,
+  showPlaceholderNotes: false,
 
   // Put your resume at public/resume.pdf and set this to '/resume.pdf'.
   // While it is null, no download button is shown anywhere.

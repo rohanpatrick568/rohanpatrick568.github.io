@@ -41,7 +41,7 @@ const fit = fitProp ?? entry.fit ?? 'cover';
       />
     </div>
   ) : (
-    <div class="photo__frame placeholder" style={style} data-photo-key={photo}>
+    <div class:list={['photo__frame placeholder', { 'placeholder--quiet': !notes }]} style={style} data-photo-key={photo}>
       <LineArt name={art ?? 'camera'} class="placeholder__art" />
       {notes && (
         <div class="placeholder__note">
@@ -78,6 +78,8 @@ const fit = fitProp ?? entry.fit ?? 'cover';
     /* Let the frame grow past its ratio when the notes need more room (narrow screens). */
     overflow: visible;
   }
+  /* With notes hidden (SITE.showPlaceholderNotes = false) the panel should look intentional, not unfinished. */
+  .placeholder--quiet { border-color: transparent; background: var(--paper-2); }
   .placeholder :global(.placeholder__art) { position: absolute; width: 42%; max-width: 11rem; opacity: 0.16; right: 6%; bottom: 6%; }
   .placeholder__note { text-decoration: none; position: relative; max-width: 26rem; font-size: 0.92rem; line-height: 1.5; color: var(--ink-2); }
   /* Reset page-level paragraph styles (e.g. .page-head p) so notes look the same everywhere. */
