@@ -1,0 +1,105 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { SITE } from '../config/site';
+import { SKILLS, COURSEWORK } from '../data/skills';
+
+const entries = await getCollection('experience');
+const sections = ['Education', 'Research & design', 'Work', 'Leadership & community', 'Awards & honors'] as const;
+const bySection = (s: string) => entries.filter((e) => e.data.section === s).sort((a, b) => a.data.order - b.data.order);
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+---
+<BaseLayout title="Experience" description="Education, research, work, leadership, awards and skills of Rohan Patrick Jr., Electrical & Computer Engineering student at the University at Albany.">
+  <header class="page-head wrap">
+    <h1>Experience.</h1>
+    <p>Where I've studied, researched and worked, and what I can do. This page doubles as my resume.</p>
+    {SITE.resumePdf && (
+      <a class="btn" href={SITE.resumePdf} download><Icon name="download" size={18} /> Download resume (PDF)</a>
+    )}
+  </header>
+
+  <div class="wrap layout">
+    <nav class="toc" aria-label="On this page">
+      <ul>
+        {sections.map((s) => <li><a href={`#${slug(s)}`}>{s}</a></li>)}
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#coursework">Coursework</a></li>
+      </ul>
+    </nav>
+
+    <div class="content">
+      {sections.map((s) => (
+        <section id={slug(s)} class="block" aria-labelledby={`${slug(s)}-h`}>
+          <h2 id={`${slug(s)}-h`}>{s}</h2>
+          <ol class="entries">
+            {bySection(s).map((e) => (
+              <li class="entry">
+                <div class="entry__when">{e.data.period}</div>
+                <div>
+                  <h3>{e.data.title}</h3>
+                  <p class="entry__org">{e.data.org}{e.data.place && <span> · {e.data.place}</span>}</p>
+                  {e.data.bullets.length > 0 && <ul class="entry__bullets">{e.data.bullets.map((b) => <li>{b}</li>)}</ul>}
+                  <p class="entry__links">
+                    {e.data.project && <a class="more" href={`/projects/${e.data.project}/`}>See the project</a>}
+                    {e.data.link && <a href={e.data.link.url} target="_blank" rel="noopener">{e.data.link.label}<span class="sr-only"> (opens in a new tab)</span></a>}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
+
+      <section id="skills" class="block" aria-labelledby="skills-h">
+        <h2 id="skills-h">Skills</h2>
+        <dl class="skills">
+          {SKILLS.map((g) => (
+            <div>
+              <dt>{g.group}</dt>
+              <dd>{g.items.join(', ')}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <section id="coursework" class="block" aria-labelledby="coursework-h">
+        <h2 id="coursework-h">Selected coursework</h2>
+        <ul class="courses">{COURSEWORK.map((c) => <li>{c}</li>)}</ul>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-head .btn { margin-top: 0.5rem; }
+  .layout { display: grid; grid-template-columns: 13rem 1fr; gap: 3rem; padding-bottom: 3rem; }
+  .toc ul { position: sticky; top: 6rem; list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+  .toc a { text-decoration: none; color: var(--ink-2); font-weight: 500; }
+  .toc a:hover { color: var(--ink); text-decoration: underline; }
+  .block { padding-bottom: 3rem; }
+  .block h2 { border-bottom: 2px solid var(--ink); padding-bottom: 0.6rem; margin-bottom: 0.5rem; }
+  .entries { list-style: none; margin: 0; padding: 0; }
+  .entry { display: grid; grid-template-columns: 11rem 1fr; gap: 1.5rem; padding-block: 1.5rem; border-bottom: 1px solid var(--line); }
+  .entry__when { color: var(--ink-3); font-weight: 600; font-size: 0.95rem; padding-top: 0.15rem; }
+  .entry h3 { margin-bottom: 0.25rem; }
+  .entry__org { color: var(--ink-2); margin-bottom: 0.6rem; }
+  .entry__bullets { padding-left: 1.2rem; margin: 0 0 0.6rem; color: var(--ink-2); }
+  .entry__bullets li { margin-bottom: 0.35rem; }
+  .entry__links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin: 0; }
+  .entry__links:empty { display: none; }
+  .skills { display: grid; gap: 1.1rem; margin: 1.25rem 0 0; }
+  .skills div { display: grid; grid-template-columns: 11rem 1fr; gap: 1.5rem; }
+  .skills dt { font-weight: 700; }
+  .skills dd { margin: 0; color: var(--ink-2); }
+  .courses { columns: 2; column-gap: 2.5rem; padding-left: 1.2rem; margin-top: 1.25rem; color: var(--ink-2); }
+  .courses li { margin-bottom: 0.4rem; break-inside: avoid; }
+  @media (max-width: 56rem) {
+    .layout { grid-template-columns: 1fr; gap: 0; }
+    .toc { display: none; }
+  }
+  @media (max-width: 40rem) {
+    .entry, .skills div { grid-template-columns: 1fr; gap: 0.3rem; }
+    .courses { columns: 1; }
+  }
+</style>

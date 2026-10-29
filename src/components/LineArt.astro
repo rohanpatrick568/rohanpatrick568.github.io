@@ -1,0 +1,8 @@
+---
+// Renders one of the decorative line drawings from src/assets/art.
+const drawings = import.meta.glob<{ default: (props: Record<string, unknown>) => unknown }>('../assets/art/*.svg', { eager: true });
+interface Props { name: string; class?: string }
+const { name, class: className } = Astro.props;
+const Drawing = drawings[`../assets/art/${name}.svg`]?.default as any;
+---
+{Drawing && <Drawing class:list={['line-art', className]} aria-hidden="true" focusable="false" />}

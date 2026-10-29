@@ -1,0 +1,14 @@
+# build output
+dist/
+.astro/
+# dependencies
+node_modules/
+# test output (screenshots, reports)
+test-results/
+# logs and local env
+npm-debug.log*
+.env
+.env.*
+.DS_Store
+# private research never belongs in this repo
+private-research/

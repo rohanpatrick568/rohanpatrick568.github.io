@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectVisual from '../../components/ProjectVisual.astro';
+import { getProjects } from '../../lib/content';
+
+const projects = await getProjects();
+const categories = ['Research', 'Hardware & embedded', 'Machine learning', 'Explorations'].filter((c) =>
+  projects.some((p) => p.data.category === c),
+);
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+---
+<BaseLayout title="Projects" description="Hardware, embedded, machine-learning and software projects by Rohan Patrick Jr., with what I built, how, and how it turned out.">
+  <header class="page-head wrap">
+    <h1>Projects.</h1>
+    <p>Research, coursework, competitions and side projects, newest first. Each page covers the problem, my part, how it works and how it turned out.</p>
+  </header>
+
+  <div class="wrap">
+    <div class="filters" role="group" aria-label="Filter projects by category" hidden>
+      <button type="button" aria-pressed="true" data-filter="all">All <span>{projects.length}</span></button>
+      {categories.map((c) => (
+        <button type="button" aria-pressed="false" data-filter={slug(c)}>
+          {c} <span>{projects.filter((p) => p.data.category === c).length}</span>
+        </button>
+      ))}
+    </div>
+    <p class="sr-only" aria-live="polite" id="filter-status"></p>
+
+    <ul class="list">
+      {projects.map((p) => (
+        <li class="row" data-category={slug(p.data.category)}>
+          <a class="row__visual" href={`/projects/${p.id}/`} tabindex="-1" aria-hidden="true">
+            <ProjectVisual project={p} ratio="4:3" sizes="(min-width: 48rem) 18rem, 100vw" preferArt />
+          </a>
+          <div class="row__text">
+            <p class="eyebrow">{p.data.category} · {p.data.period}</p>
+            <h2><a href={`/projects/${p.id}/`}>{p.data.title}</a></h2>
+            <p class="spec">{p.data.spec.map((s) => <span>{s}</span>)}</p>
+            <p class="row__summary">{p.data.summary}</p>
+            <p class="row__meta">
+              <span class="status">{p.data.status}</span>
+              {p.data.award && <span class="status status--award">{p.data.award}</span>}
+            </p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>
+
+<script>
+  const group = document.querySelector<HTMLElement>('.filters');
+  const rows = [...document.querySelectorAll<HTMLElement>('.row')];
+  const status = document.getElementById('filter-status');
+  if (group) {
+    group.hidden = false;
+    group.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('button');
+      if (!btn) return;
+      const f = btn.dataset.filter;
+      group.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      let shown = 0;
+      rows.forEach((r) => {
+        const show = f === 'all' || r.dataset.category === f;
+        r.hidden = !show;
+        if (show) shown++;
+      });
+      if (status) status.textContent = `Showing ${shown} project${shown === 1 ? '' : 's'}`;
+    });
+  }
+</script>
+
+<style>
+  .filters { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem; }
+  .filters button {
+    font: 600 0.95rem/1 var(--font); padding: 0.7rem 1rem; min-height: 2.75rem; border-radius: 999px; cursor: pointer;
+    border: 2px solid var(--line); background: #fff; color: var(--ink);
+  }
+  .filters button span { color: var(--ink-3); font-weight: 500; margin-left: 0.25rem; }
+  .filters button[aria-pressed='true'] { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .filters button[aria-pressed='true'] span { color: #cfd6e6; }
+  .list { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+  .row { display: grid; grid-template-columns: 17rem 1fr; gap: 2.25rem; padding-block: 2.25rem; border-bottom: 1px solid var(--line); align-items: start; }
+  .row[hidden] { display: none; }
+  .row__visual { display: block; border-radius: 1rem; overflow: hidden; }
+  .row h2 { font-size: 1.55rem; margin-bottom: 0.4rem; }
+  .row h2 a { text-decoration: none; }
+  .row h2 a:hover { text-decoration: underline; }
+  .row__summary { color: var(--ink-2); max-width: 44rem; }
+  .row__meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; }
+  .status--award { background: #fff4ef; border-color: #f1d4c8; color: #8a3520; }
+  @media (max-width: 48rem) {
+    .row { grid-template-columns: 1fr; gap: 1.25rem; }
+    .row__visual { max-width: 26rem; }
+  }
+</style>

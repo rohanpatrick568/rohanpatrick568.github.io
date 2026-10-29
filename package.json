@@ -1,0 +1,30 @@
+{
+  "name": "rohanpatrick568.github.io",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal website of Rohan Patrick Jr.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "photos": "node scripts/photo-checklist.mjs",
+    "qa": "node scripts/qa.cjs"
+  },
+  "dependencies": {
+    "@astrojs/rss": "4.0.19",
+    "@astrojs/sitemap": "3.7.4",
+    "@fontsource/work-sans": "5.3.0",
+    "astro": "7.4.1",
+    "sharp": "0.35.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@axe-core/playwright": "4.14.0",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=22.22.0"
+  }
+}

@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LineArt from '../components/LineArt.astro';
+import Icon from '../components/Icon.astro';
+import { CONTACT, SOCIALS } from '../config/site';
+const web = SOCIALS.filter((s) => s.href.startsWith('http'));
+---
+<BaseLayout title="Contact" description="How to reach Rohan Patrick Jr.: email, LinkedIn and GitHub.">
+  <header class="page-head wrap">
+    <h1>Get in touch.</h1>
+    <p>I'm looking for early-career roles in electrical, embedded and hardware engineering, and I'm always happy to talk about projects. Email is the best way to reach me.</p>
+  </header>
+  <div class="wrap grid">
+    <ul class="ways">
+      {CONTACT.emails.map((e) => (
+        <li>
+          <p class="eyebrow">{e.label}</p>
+          <a class="way" href={`mailto:${e.address}`}><Icon name="mail" /> {e.address}</a>
+        </li>
+      ))}
+      {web.map((s) => (
+        <li>
+          <p class="eyebrow">{s.label}</p>
+          <a class="way" href={s.href} target="_blank" rel="me noopener"><Icon name={s.icon} /> {s.href.replace(/^https:\/\/(www\.)?/, '')}<span class="sr-only"> (opens in a new tab)</span></a>
+        </li>
+      ))}
+    </ul>
+    <LineArt name="mcu-board" class="art" />
+  </div>
+</BaseLayout>
+
+<style>
+  .grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: center; padding-bottom: 4rem; }
+  .ways { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+  .ways li { padding-block: 1.4rem; border-bottom: 1px solid var(--line); }
+  .ways .eyebrow { margin-bottom: 0.4rem; }
+  .way { display: inline-flex; align-items: center; gap: 0.7rem; font-size: clamp(1.05rem, 2.4vw, 1.4rem); font-weight: 600; text-decoration: none; word-break: break-word; }
+  .way:hover { text-decoration: underline; }
+  .grid :global(.art) { width: 100%; max-width: 24rem; justify-self: center; }
+  @media (max-width: 48rem) { .grid { grid-template-columns: 1fr; } .grid :global(.art) { max-width: 14rem; } }
+</style>

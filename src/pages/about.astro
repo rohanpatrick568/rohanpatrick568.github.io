@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Photo from '../components/Photo.astro';
+import LineArt from '../components/LineArt.astro';
+import { getUpdates, formatDate } from '../lib/content';
+import { MILESTONES } from '../data/milestones';
+
+const updates = await getUpdates();
+---
+<BaseLayout title="About" description="Who Rohan Patrick Jr. is: his path through electrical and computer engineering at UAlbany, what he cares about, and what he's doing now." type="profile">
+  <header class="page-head wrap intro">
+    <div>
+      <h1>About me.</h1>
+      <p>
+        I'm Rohan Patrick Jr., an Electrical &amp; Computer Engineering student at the University at Albany. I like
+        projects where a physical device, the code that runs on it and a bit of machine learning all have to work
+        together.
+      </p>
+    </div>
+    <div class="intro__photo">
+      <Photo photo="portrait" sizes="(min-width: 64rem) 24rem, 100vw" widths={[400, 720]} />
+    </div>
+  </header>
+
+  <section class="section story" aria-labelledby="story-h">
+    <div class="wrap-text prose">
+      <h2 id="story-h">How I got here</h2>
+      <p>
+        I started at UAlbany in August 2022 with a VanRoss Foundation scholarship. The next year I became a Resident
+        Assistant, responsible for a community of about 40 first-year students. I'm also part of the UAlbany
+        Marching &amp; Spirit Band and a member of the National Society of Black Engineers.
+      </p>
+      <p>
+        In class I worked my way down the stack, from circuits and VHDL to writing C for an MSP430 microcontroller. On
+        my own time I wrote a neural network in plain C to understand what the frameworks were hiding, and started
+        teaching myself how trading systems work.
+      </p>
+      <p>
+        In February 2025 a teammate and I took 3rd place at the Hack-A-Damien hackathon with a solfège memory game that
+        listens to you sing. That summer, through UAlbany's Summer Undergraduate Research Program, I built a vest that
+        helps visually impaired people navigate by turning what a camera sees into vibration. I presented it in August,
+        and UAlbany News wrote about it.
+      </p>
+      <p>
+        This fall I'm on a senior design team building a low-cost sound level meter for the New York State Mesonet. I
+        walked at Commencement in May 2026 and finish my degree in December 2026.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tint" aria-labelledby="values-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What I care about</p>
+        <h2 id="values-h">How I like to work</h2>
+      </div>
+      <ul class="values">
+        <li>
+          <h3>Build for people who get left out</h3>
+          <p>The haptic vest started from a simple frustration: visually impaired people still face real inequality getting around, and the usual tools are expensive or limited. I want my engineering to close gaps like that.</p>
+        </li>
+        <li>
+          <h3>Be honest about results</h3>
+          <p>On my senior design work I keep software validation separate from calibrated hardware measurements. In my trading research, the most useful result was a model that failed on new data. I'd rather know what's true.</p>
+        </li>
+        <li>
+          <h3>Learn by building</h3>
+          <p>I learn a tool best by making something real with it, whether that's a neural network in C or an app I'm curious about. As I told UAlbany News, "I'm a machine learning fanatic."</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="life-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Outside engineering</p>
+        <h2 id="life-h">Life outside the lab</h2>
+      </div>
+      <div class="life">
+        <article class="life__item">
+          <Photo photo="band" sizes="(min-width: 64rem) 22rem, 100vw" widths={[400, 720]} />
+          <h3>Music</h3>
+          <p>I'm part of the UAlbany Marching &amp; Spirit Band, and music crept into my engineering too: our hackathon game was built on the solfège scale.</p>
+        </article>
+        <article class="life__item">
+          <Photo photo="community" sizes="(min-width: 64rem) 22rem, 100vw" widths={[400, 720]} />
+          <h3>Community</h3>
+          <p>As a Resident Assistant I help first-year students find their footing, and I sit on interviews for new RAs. I'm also a member of NSBE.</p>
+        </article>
+        <article class="life__item">
+          <Photo photo="hobby" sizes="(min-width: 64rem) 22rem, 100vw" widths={[400, 720]} />
+          <h3>Curiosity projects</h3>
+          <p>When something catches my interest, I build a version of it: a strength-training app, an assistant for my job search, a deal finder for resellers. They're how I explore.</p>
+          <a class="more" href="/projects/">See them</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint" aria-labelledby="timeline-h">
+    <div class="wrap-text">
+      <p class="eyebrow">Milestones</p>
+      <h2 id="timeline-h">Timeline</h2>
+      <ol class="timeline">
+        {MILESTONES.map((m) => (
+          <li>
+            <span class="timeline__when">{m.when}</span>
+            <span class="timeline__what">
+              {m.href ? <a href={m.href}>{m.what}</a> : m.what}
+            </span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="now" class="section now" aria-labelledby="now-h">
+    <div class="wrap now__grid">
+      <div>
+        <p class="eyebrow">Now &amp; next</p>
+        <h2 id="now-h">What I'm focused on</h2>
+        <LineArt name="filter-bank" class="now__art" />
+      </div>
+      <ul class="updates">
+        {updates.map((u) => (
+          <li>
+            <p class="updates__date"><time datetime={u.data.date.toISOString().slice(0, 10)}>{formatDate(u.data.date, { year: 'numeric', month: 'long' })}</time></p>
+            <h3>{u.data.title}</h3>
+            <p>{u.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .intro { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: center; }
+  .intro p { font-size: 1.3rem; }
+  .intro__photo { border-radius: var(--radius-photo); overflow: hidden; }
+  .intro__photo :global(.photo__frame) { border-radius: var(--radius-photo); }
+  .story { padding-top: 1rem; }
+  .story h2 { margin-top: 0; }
+  .values { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; }
+  .values li { border-top: 2px solid var(--ink); padding-top: 1.25rem; }
+  .values p { color: var(--ink-2); }
+  .life { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; }
+  .life__item :global(.photo__frame) { border-radius: 1.25rem; margin-bottom: 1.25rem; }
+  .life__item p { color: var(--ink-2); }
+  .timeline { list-style: none; margin: 1.5rem 0 0; padding: 0; border-left: 2px solid var(--ink); }
+  .timeline li { position: relative; display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; padding: 0 0 1.4rem 1.5rem; }
+  .timeline li::before { content: ''; position: absolute; left: -0.45rem; top: 0.45rem; width: 0.8rem; height: 0.8rem; border-radius: 50%; background: var(--paper-2); border: 2px solid var(--ink); }
+  .timeline__when { font-weight: 700; }
+  .timeline__what { color: var(--ink-2); }
+  .now__grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 2rem 4rem; }
+  .now__grid :global(.now__art) { width: 18rem; max-width: 100%; margin-top: 1.5rem; }
+  .updates { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.75rem; }
+  .updates li { border-top: 1px solid var(--line); padding-top: 1.25rem; }
+  .updates__date { font-weight: 600; color: var(--ink-3); margin-bottom: 0.3rem; font-size: 0.95rem; }
+  .updates p:last-child { color: var(--ink-2); }
+  @media (max-width: 64rem) {
+    .intro, .now__grid { grid-template-columns: 1fr; }
+    .intro__photo { max-width: 24rem; }
+    .values, .life { grid-template-columns: 1fr; gap: 2rem; }
+    .life__item :global(.photo) { max-width: 30rem; }
+  }
+  @media (max-width: 34rem) {
+    .timeline li { grid-template-columns: 1fr; gap: 0.1rem; }
+  }
+</style>

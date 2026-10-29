@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LineArt from '../../components/LineArt.astro';
+import Icon from '../../components/Icon.astro';
+import { getPosts, formatDate } from '../../lib/content';
+
+const posts = await getPosts();
+---
+<BaseLayout title="Blog" description="Writing by Rohan Patrick Jr. about building hardware, embedded systems and machine-learning projects.">
+  <header class="page-head wrap">
+    <h1>Blog.</h1>
+    <p>Notes on what I'm building, what broke, and what I learned from it.</p>
+    <a class="rss" href="/blog/rss.xml"><Icon name="rss" size={18} /> Subscribe by RSS</a>
+  </header>
+
+  <div class="wrap">
+    {posts.length === 0 ? (
+      <section class="empty" aria-labelledby="empty-h">
+        <LineArt name="filter-bank" class="empty__art" />
+        <div>
+          <h2 id="empty-h">The first posts are on the way.</h2>
+          <p>
+            I'm writing up the projects behind this site. Until then, the <a href="/projects/">project pages</a> have
+            the full stories, and the RSS feed will tell you when something new goes up.
+          </p>
+        </div>
+      </section>
+    ) : (
+      <ol class="posts">
+        {posts.map((post) => (
+          <li>
+            <p class="posts__date"><time datetime={post.data.pubDate.toISOString().slice(0, 10)}>{formatDate(post.data.pubDate)}</time>{post.data.draft && ' · Draft (only visible in dev)'}</p>
+            <h2><a href={`/blog/${post.id}/`}>{post.data.title}</a></h2>
+            <p>{post.data.description}</p>
+            {post.data.tags.length > 0 && <p class="posts__tags">{post.data.tags.map((t) => <span>{t}</span>)}</p>}
+          </li>
+        ))}
+      </ol>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .rss { display: inline-flex; align-items: center; gap: 0.45rem; font-weight: 600; text-decoration: none; }
+  .rss:hover { text-decoration: underline; }
+  .empty { display: grid; grid-template-columns: 22rem 1fr; gap: 3rem; align-items: center; border-top: 2px solid var(--ink); padding-block: 3rem 4rem; }
+  .empty :global(.empty__art) { width: 100%; }
+  .empty p { color: var(--ink-2); font-size: 1.1rem; max-width: 34rem; }
+  .posts { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+  .posts li { padding-block: 2rem; border-bottom: 1px solid var(--line); max-width: 48rem; }
+  .posts h2 { font-size: 1.6rem; margin-bottom: 0.4rem; }
+  .posts h2 a { text-decoration: none; }
+  .posts h2 a:hover { text-decoration: underline; }
+  .posts p { color: var(--ink-2); }
+  .posts__date { font-weight: 600; color: var(--ink-3) !important; font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .posts__tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0; }
+  .posts__tags span { font-size: 0.82rem; background: var(--paper-2); border: 1px solid var(--line); padding: 0.15rem 0.55rem; border-radius: 999px; }
+  @media (max-width: 48rem) { .empty { grid-template-columns: 1fr; gap: 1.5rem; } .empty :global(.empty__art) { max-width: 16rem; } }
+</style>

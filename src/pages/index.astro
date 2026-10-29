@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Photo from '../components/Photo.astro';
+import LineArt from '../components/LineArt.astro';
+import ProjectVisual from '../components/ProjectVisual.astro';
+import { getFeaturedProjects, getProjects, getUpdates, formatDate } from '../lib/content';
+
+const featured = await getFeaturedProjects();
+const others = (await getProjects()).filter((p) => p.data.featured === undefined);
+const [latest] = await getUpdates();
+---
+<BaseLayout>
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero__photo">
+      <Photo photo="portrait" loading="eager" sizes="(min-width: 64rem) 34rem, 100vw" widths={[480, 720, 1080]} />
+    </div>
+    <div class="hero__text">
+      <LineArt name="pi-stack" class="deco deco--a" />
+      <LineArt name="sound-meter" class="deco deco--b" />
+      <LineArt name="haptic-vest" class="deco deco--c" />
+      <h1 id="hero-title">I'm Rohan Patrick&nbsp;Jr., an Electrical &amp; Computer Engineer.</h1>
+      <p>
+        I'm finishing my B.S. at the University at Albany, and I build things where hardware, embedded code and
+        machine learning meet: a vest that turns camera vision into vibration, a sound meter for New York's
+        weather network, a neural network written from scratch in C.
+      </p>
+      <p>Scroll down to see what I've built, or get in touch.</p>
+      <div class="hero__actions">
+        <a class="btn" href="/projects/">Projects</a>
+        <a class="btn" href="/experience/">Experience</a>
+        <a class="btn" href="/contact/">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Selected work</p>
+        <h2 id="work-title">Things I've built</h2>
+      </div>
+      <ol class="featured">
+        {featured.map((p, i) => (
+          <li class:list={['feature', { 'feature--flip': i % 2 === 1 }]}>
+            <a class="feature__visual" href={`/projects/${p.id}/`} tabindex="-1" aria-hidden="true">
+              <ProjectVisual project={p} ratio="4:3" sizes="(min-width: 64rem) 36rem, 100vw" />
+            </a>
+            <div class="feature__text">
+              <p class="eyebrow">{p.data.category} · {p.data.period}</p>
+              <h3><a href={`/projects/${p.id}/`}>{p.data.title}</a></h3>
+              <p class="spec">{p.data.spec.map((s) => <span>{s}</span>)}</p>
+              <p>{p.data.summary}</p>
+              <a class="more" href={`/projects/${p.id}/`}>Learn more<span class="sr-only"> about {p.data.title}</span></a>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div class="also">
+        <h3>More projects</h3>
+        <ul>
+          {others.map((p) => (
+            <li>
+              <a href={`/projects/${p.id}/`}>{p.data.title}</a>
+              <span>{p.data.award ?? p.data.summary.split('. ')[0].replace(/\.$/, '')}</span>
+            </li>
+          ))}
+        </ul>
+        <a class="btn btn--ghost" href="/projects/">All projects</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint" aria-labelledby="quote-title">
+    <div class="wrap quote">
+      <h2 id="quote-title" class="sr-only">In my words</h2>
+      <blockquote>
+        <p>“I've always had a real drive to innovate, invent and think of cool ideas.”</p>
+      </blockquote>
+      <p class="quote__src">
+        From <a href="https://www.albany.edu/news-center/news/2025-undergrad-research-project-develops-haptics-assist-visually-impaired">UAlbany News</a>, September 2025
+      </p>
+    </div>
+  </section>
+
+  {latest && (
+    <section class="section now" aria-labelledby="now-title">
+      <div class="wrap now__grid">
+        <div>
+          <p class="eyebrow">Now</p>
+          <h2 id="now-title">{latest.data.title}</h2>
+        </div>
+        <div>
+          <p class="now__date">{formatDate(latest.data.date, { year: 'numeric', month: 'long' })}</p>
+          <p class="now__body">{latest.body}</p>
+          <a class="more" href="/about/#now">What I'm up to</a>
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .hero {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(2rem, 6vw, 5.5rem);
+    align-items: center; padding-block: clamp(2rem, 7vw, 6rem) clamp(2rem, 6vw, 5rem);
+  }
+  .hero__photo { border-radius: var(--radius-photo); overflow: hidden; }
+  .hero__photo :global(.photo), .hero__photo :global(.photo__frame) { border-radius: var(--radius-photo); }
+  .hero__text { position: relative; text-align: center; padding-block: 3rem; }
+  .hero__text h1 { position: relative; z-index: 1; font-size: clamp(2.3rem, 4.6vw, 3.9rem); }
+  .hero__text p { position: relative; z-index: 1; font-size: 1.12rem; color: var(--ink-2); max-width: 34rem; margin-inline: auto; }
+  .hero__actions { position: relative; z-index: 1; display: grid; gap: 0.8rem; width: min(100%, 17rem); margin: 2rem auto 0; }
+  .hero__text :global(.deco) { position: absolute; pointer-events: none; }
+  .hero__text :global(.deco--a) { width: 9.5rem; top: -2.5rem; right: -1.5rem; transform: rotate(-6deg); }
+  .hero__text :global(.deco--b) { width: 8rem; bottom: -1rem; left: -2rem; }
+  .hero__text :global(.deco--c) { width: 8.5rem; bottom: -2rem; right: -2.5rem; }
+
+  .featured { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(3.5rem, 8vw, 6rem); }
+  .feature { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(1.5rem, 5vw, 4.5rem); align-items: center; }
+  .feature--flip .feature__visual { order: 2; }
+  .feature__visual { display: block; border-radius: 1.75rem; overflow: hidden; text-decoration: none; }
+  .feature__text h3 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; }
+  .feature__text h3 a { text-decoration: none; }
+  .feature__text h3 a:hover { text-decoration: underline; }
+  .feature__text > p:not(.eyebrow):not(.spec) { color: var(--ink-2); }
+
+  .also { margin-top: clamp(4rem, 9vw, 6.5rem); border-top: 2px solid var(--ink); padding-top: 2rem; }
+  .also ul { list-style: none; padding: 0; margin: 0 0 2rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 3rem; }
+  .also li { display: grid; gap: 0.15rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+  .also li a { font-weight: 700; font-size: 1.1rem; text-decoration: none; }
+  .also li a:hover { text-decoration: underline; }
+  .also li span { color: var(--ink-3); font-size: 0.97rem; }
+
+  .quote { text-align: center; }
+  .quote blockquote { margin: 0 auto; max-width: 50rem; }
+  .quote blockquote p { font-size: clamp(1.5rem, 3.4vw, 2.4rem); font-weight: 700; line-height: 1.25; letter-spacing: -0.015em; margin: 0; }
+  .quote__src { color: var(--ink-3); margin: 1.2rem 0 0; }
+
+  .now__grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 2rem 4rem; align-items: start; }
+  .now__date { font-weight: 600; color: var(--ink-3); margin-bottom: 0.4rem; }
+  .now__body { font-size: 1.15rem; color: var(--ink-2); }
+
+  @media (max-width: 64rem) {
+    .hero { grid-template-columns: 1fr; }
+    .hero__photo { max-width: 30rem; width: 100%; margin-inline: auto; }
+    .hero__text { padding-block: 0; }
+    .hero__text :global(.deco--b), .hero__text :global(.deco--c) { display: none; }
+    .hero__text :global(.deco--a) { width: 6rem; top: -3.5rem; right: 0; opacity: 0.9; }
+    .feature, .now__grid { grid-template-columns: 1fr; }
+    .feature--flip .feature__visual { order: 0; }
+  }
+  @media (max-width: 40rem) {
+    .hero__text :global(.deco--a) { display: none; }
+    .also ul { grid-template-columns: 1fr; }
+  }
+</style>

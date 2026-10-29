@@ -1,0 +1,87 @@
+---
+// Shows a photo from src/data/photos.json, or a clearly labelled placeholder
+// when the file hasn't been added yet. Pages never need editing to swap photos.
+import { Picture } from 'astro:assets';
+import { getPhoto, cssRatio, type PhotoKey } from '../lib/photos';
+import { SITE } from '../config/site';
+import LineArt from './LineArt.astro';
+
+interface Props {
+  photo: PhotoKey;
+  sizes?: string;
+  widths?: number[];
+  loading?: 'eager' | 'lazy';
+  class?: string;
+  // Force a shape for the frame (e.g. "4:3"); defaults to the registry ratio or the image's own.
+  ratio?: string;
+  fit?: 'cover' | 'contain';
+  caption?: string;
+  art?: string;
+  // Hide the instructions even when placeholder notes are on (for small thumbnails).
+  compact?: boolean;
+}
+const { photo, sizes = '(min-width: 72rem) 40rem, 100vw', widths = [480, 800, 1200], loading = 'lazy', class: className, ratio, fit: fitProp, caption, art, compact = false } = Astro.props;
+const { entry, image } = getPhoto(photo);
+const frameRatio = ratio ?? entry.ratio;
+const style = frameRatio ? `aspect-ratio: ${cssRatio(frameRatio)}` : undefined;
+const notes = SITE.showPlaceholderNotes && !compact;
+const fit = fitProp ?? entry.fit ?? 'cover';
+---
+<figure class:list={['photo', className, { 'photo--missing': !image }]}>
+  {image ? (
+    <div class:list={['photo__frame', `photo__frame--${fit}`]} style={style}>
+      <Picture
+        src={image}
+        alt={entry.alt}
+        widths={widths.filter((w) => w <= image.width).concat(widths.some((w) => w <= image.width) ? [] : [image.width])}
+        sizes={sizes}
+        formats={['avif', 'webp']}
+        loading={loading}
+        decoding="async"
+      />
+    </div>
+  ) : (
+    <div class="photo__frame placeholder" style={style} data-photo-key={photo}>
+      <LineArt name={art ?? 'camera'} class="placeholder__art" />
+      {notes && (
+        <div class="placeholder__note">
+          <p class="placeholder__eyebrow">Photo needed</p>
+          <p class="placeholder__what">{entry.what}</p>
+          {entry.why && <p class="placeholder__why">{entry.why}</p>}
+          <p class="placeholder__spec">
+            {entry.ratio && <span>Crop {entry.ratio}</span>}
+            {entry.framing && <span>{entry.framing}</span>}
+          </p>
+          <p class="placeholder__file">Save as <code>src/assets/{entry.file}.jpg</code></p>
+        </div>
+      )}
+    </div>
+  )}
+  {caption && (image || notes) && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .photo { margin: 0; }
+  .photo__frame { overflow: hidden; border-radius: inherit; background: var(--paper-2); }
+  .photo__frame :global(picture), .photo__frame :global(img) { width: 100%; height: 100%; }
+  .photo__frame--cover :global(img) { object-fit: cover; }
+  .photo__frame--contain { background: var(--paper); }
+  .photo__frame--contain :global(img) { object-fit: contain; }
+  figcaption { font-size: 0.92rem; color: var(--ink-3); margin-top: 0.7rem; line-height: 1.5; }
+
+  .placeholder {
+    text-decoration: none; color: var(--ink-2);
+    position: relative; display: grid; place-items: center; text-align: left;
+    border: 2px dashed #c5cad4; background:
+      radial-gradient(circle at 1px 1px, #dfe2e8 1px, transparent 0) 0 0 / 18px 18px, var(--paper-2);
+    min-height: 12rem; padding: clamp(1rem, 3vw, 2rem);
+  }
+  .placeholder :global(.placeholder__art) { position: absolute; width: 42%; max-width: 11rem; opacity: 0.16; right: 6%; bottom: 6%; }
+  .placeholder__note { text-decoration: none; position: relative; max-width: 26rem; font-size: 0.92rem; line-height: 1.5; color: var(--ink-2); }
+  .placeholder__note p { margin: 0 0 0.45rem; }
+  .placeholder__eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+  .placeholder__what { font-weight: 700; font-size: 1.05rem; color: var(--ink); }
+  .placeholder__spec span { display: block; }
+  .placeholder__spec span:first-child { font-weight: 600; }
+  .placeholder__file code { font-size: 0.8rem; word-break: break-all; background: #fff; padding: 0.1rem 0.3rem; border-radius: 0.25rem; }
+</style>

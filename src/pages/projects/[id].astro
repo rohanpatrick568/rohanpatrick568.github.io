@@ -1,0 +1,96 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Photo from '../../components/Photo.astro';
+import ProjectVisual from '../../components/ProjectVisual.astro';
+import Icon from '../../components/Icon.astro';
+import { getProjects } from '../../lib/content';
+import { isPhotoKey } from '../../lib/photos';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((project, i) => ({
+    params: { id: project.id },
+    props: { project, prev: projects[i + 1], next: projects[i - 1] },
+  }));
+}
+
+const { project, prev, next } = Astro.props;
+const { Content } = await render(project);
+const d = project.data;
+const isScreens = d.cover?.startsWith('overload');
+const gallery = d.gallery.filter((g) => isPhotoKey(g.photo));
+---
+<BaseLayout title={d.title} description={d.summary} type="article">
+  <article>
+    <header class="head wrap">
+      <p class="eyebrow"><a href="/projects/">Projects</a> / {d.category}</p>
+      <h1>{d.title}</h1>
+      <p class="spec">{d.spec.map((s) => <span>{s}</span>)}</p>
+      <p class="lede">{d.summary}</p>
+      <dl class="facts">
+        <div><dt>My role</dt><dd>{d.role}</dd></div>
+        <div><dt>When</dt><dd>{d.period}</dd></div>
+        <div><dt>Status</dt><dd>{d.status}</dd></div>
+        {d.award && <div><dt>Result</dt><dd>{d.award}</dd></div>}
+      </dl>
+      {d.links.length > 0 && (
+        <ul class="links">
+          {d.links.map((l) => (
+            <li><a class="btn btn--ghost" href={l.url} target="_blank" rel="noopener">{l.label} <Icon name="external" size={18} /><span class="sr-only"> (opens in a new tab)</span></a></li>
+          ))}
+        </ul>
+      )}
+    </header>
+
+    <div class:list={['cover wrap', { 'cover--screens': isScreens }]}>
+      <ProjectVisual project={project} ratio={isScreens ? '16:10' : '16:9'} sizes="(min-width: 72rem) 72rem, 100vw" loading="eager" />
+    </div>
+
+    <div class="body wrap-text">
+      {d.note && <p class="note">{d.note}</p>}
+      <div class="prose"><Content /></div>
+    </div>
+
+    {gallery.length > 0 && (
+      <section class:list={['gallery wrap', { 'gallery--screens': isScreens }]} aria-label="More images">
+        {gallery.map((g) => (
+          <Photo photo={g.photo as any} caption={g.caption} ratio={isScreens ? '9:19' : undefined} sizes="(min-width: 64rem) 34rem, 100vw" />
+        ))}
+      </section>
+    )}
+
+    <nav class="pager wrap" aria-label="More projects">
+      {prev ? <a href={`/projects/${prev.id}/`}><span>Older</span>{prev.data.title}</a> : <span />}
+      {next ? <a class="pager__next" href={`/projects/${next.id}/`}><span>Newer</span>{next.data.title}</a> : <span />}
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .head { padding-block: clamp(2.5rem, 6vw, 4.5rem) 2rem; }
+  .head .eyebrow a { text-decoration: none; }
+  .head .eyebrow a:hover { text-decoration: underline; }
+  .head .spec { font-size: 1.1rem; }
+  .lede { font-size: 1.25rem; color: var(--ink-2); max-width: 46rem; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem 2rem; margin: 2rem 0; padding: 1.25rem 0; border-block: 1px solid var(--line); }
+  .facts dt { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+  .facts dd { margin: 0.2rem 0 0; font-weight: 500; }
+  .links { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .cover { border-radius: 1.75rem; overflow: hidden; }
+  .cover--screens { background: var(--paper-2); }
+  .body { padding-block: clamp(2rem, 5vw, 3.5rem); }
+  .note { background: var(--paper-2); border-left: 3px solid var(--navy); padding: 1rem 1.25rem; border-radius: 0 0.5rem 0.5rem 0; color: var(--ink-2); }
+  .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; padding-bottom: 3rem; }
+  .gallery > :global(*) { flex: 1 1 22rem; max-width: 34rem; }
+  .gallery--screens > :global(*) { flex: 0 1 16rem; }
+  .gallery :global(.photo__frame) { border-radius: 1rem; }
+  .pager { display: flex; justify-content: space-between; gap: 1.5rem; padding-block: 2rem 1rem; border-top: 2px solid var(--ink); }
+  .pager a { display: grid; gap: 0.2rem; text-decoration: none; font-weight: 700; font-size: 1.1rem; max-width: 22rem; }
+  .pager a:hover { text-decoration: underline; }
+  .pager span { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+  .pager__next { text-align: right; margin-left: auto; }
+  @media (max-width: 48rem) {
+    .gallery--screens > :global(*) { flex: 0 1 12rem; }
+  }
+</style>

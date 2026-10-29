@@ -1,0 +1,198 @@
+{
+  "_readme": "Every picture on the site is listed here by key. To add or replace one, save the image as src/assets/<file>.<jpg|jpeg|png|webp|avif> (the extension doesn't matter) and rebuild. A missing file shows a placeholder that explains what belongs there. Run `npm run photos` to see what is still missing. Optional \"fit\": \"contain\" shows the whole image (good for screenshots and plots) instead of cropping it.",
+  "photos": {
+    "portrait": {
+      "file": "photos/portrait",
+      "alt": "Portrait of Rohan Patrick Jr.",
+      "what": "A portrait of you",
+      "why": "The first thing visitors see. It should feel friendly and confident.",
+      "ratio": "4:5",
+      "framing": "Portrait orientation, chest-up, natural light, outdoors or against a plain background. Look at the camera.",
+      "pages": [
+        "Home (hero)",
+        "About"
+      ]
+    },
+    "vest-wearing": {
+      "file": "photos/vest-wearing",
+      "alt": "Rohan wearing the vision-based haptic vest prototype",
+      "what": "You wearing or holding the haptic vest",
+      "why": "Shows the vest is a real, wearable build and that you made it.",
+      "ratio": "4:3",
+      "framing": "Landscape. Vest, chest camera and motor layout visible; you can be in frame.",
+      "pages": [
+        "Home (selected work)",
+        "Projects: Haptic vest"
+      ]
+    },
+    "vest-detail": {
+      "file": "photos/vest-detail",
+      "alt": "Close-up of the haptic vest electronics: Raspberry Pi 5, Hailo-8 AI HAT+ and vibration motors",
+      "what": "A close-up of the vest electronics",
+      "why": "Lets engineers see the hardware: Pi 5, Hailo-8 HAT, DRV2605L drivers and motors.",
+      "ratio": "4:3",
+      "framing": "Landscape or square, well lit, components in focus, cables visible.",
+      "pages": [
+        "Projects: Haptic vest"
+      ]
+    },
+    "vest-poster": {
+      "file": "photos/vest-poster",
+      "alt": "Rohan presenting the haptic vest at the SURP poster session, August 2025",
+      "what": "You presenting at the SURP poster session (Aug 7, 2025)",
+      "why": "Shows you explaining the research to an audience.",
+      "ratio": "3:2",
+      "framing": "Landscape, you and the poster or vest in frame. If you use the UAlbany News photo, get permission from the photographer or the News Center first.",
+      "pages": [
+        "Projects: Haptic vest",
+        "About (timeline)"
+      ]
+    },
+    "mesonet-hardware": {
+      "file": "photos/mesonet-hardware",
+      "alt": "Prototype sound level meter: Raspberry Pi 4B, Dayton Audio iMM-6 microphone and USB audio interface",
+      "what": "The senior-design sound level meter hardware",
+      "why": "Shows the physical system behind the filter work.",
+      "ratio": "4:3",
+      "framing": "Landscape. Pi, microphone and interface together; the reference meter beside it if possible.",
+      "pages": [
+        "Home (selected work)",
+        "Projects: Mesonet sound meter"
+      ]
+    },
+    "msp430-game": {
+      "file": "photos/msp430-game",
+      "alt": "MSP430 electronic memory game with buttons and a thumbstick",
+      "what": "The MSP430 memory game board",
+      "why": "Shows a hands-on embedded build.",
+      "ratio": "4:3",
+      "framing": "Landscape, from slightly above, board, buttons and thumbstick visible. Powered on if you can.",
+      "pages": [
+        "Projects: MSP430 memory game"
+      ]
+    },
+    "solfege-game": {
+      "file": "photos/solfege-game",
+      "alt": "Screenshot of the Solfège Light and Sound Memory Game",
+      "what": "A screenshot of the Solfège memory game (or a hackathon demo photo)",
+      "why": "Shows the hackathon project in action.",
+      "ratio": "16:9",
+      "framing": "Landscape browser screenshot mid-game, or a photo of the demo table.",
+      "pages": [
+        "Projects: Solfège memory game"
+      ]
+    },
+    "nn-terminal": {
+      "file": "photos/nn-terminal",
+      "alt": "Terminal output of the C neural network predicting an ASCII-art handwritten digit",
+      "what": "A terminal screenshot of NN-in-C predicting a digit",
+      "why": "Shows the from-scratch network working, ideally with the test accuracy printed.",
+      "ratio": "16:9",
+      "framing": "Landscape terminal screenshot with the ASCII digit, the prediction and the accuracy line.",
+      "pages": [
+        "Projects: Neural network in C"
+      ]
+    },
+    "band": {
+      "file": "photos/band",
+      "alt": "Rohan with the UAlbany Marching and Spirit Band",
+      "what": "You with the Marching & Spirit Band",
+      "why": "Shows life outside engineering.",
+      "ratio": "3:2",
+      "framing": "Landscape preferred, in uniform or performing.",
+      "pages": [
+        "About (life outside engineering)"
+      ]
+    },
+    "community": {
+      "file": "photos/community",
+      "alt": "Rohan at an NSBE event",
+      "what": "You at an NSBE event or convention",
+      "why": "Shows the community you're part of.",
+      "ratio": "3:2",
+      "framing": "Landscape, you plus the event setting. Ask anyone else in frame if they're OK being online.",
+      "pages": [
+        "About (life outside engineering)"
+      ]
+    },
+    "hobby": {
+      "file": "photos/hobby",
+      "alt": "Rohan working on one of his side projects",
+      "what": "You working on a side project, or doing something you enjoy for fun",
+      "why": "Shows the curiosity behind the side projects and a bit of your personality.",
+      "ratio": "1:1",
+      "framing": "Square, candid is fine.",
+      "pages": [
+        "About (life outside engineering)"
+      ]
+    },
+    "overload-home": {
+      "file": "projects/overload/01_home_light",
+      "alt": "Overload app home screen with today's generated workout",
+      "pages": [
+        "Projects: Overload"
+      ]
+    },
+    "overload-workout": {
+      "file": "projects/overload/03_active_workout_light",
+      "alt": "Overload active workout screen logging sets, weights and a rest timer",
+      "pages": [
+        "Home (selected work)",
+        "Projects: Overload"
+      ]
+    },
+    "overload-strength": {
+      "file": "projects/overload/06_progress_strength_light",
+      "alt": "Overload progress screen charting estimated one-rep max over time",
+      "pages": [
+        "Projects: Overload"
+      ]
+    },
+    "overload-complete": {
+      "file": "projects/overload/04_completion_light",
+      "alt": "Overload workout completion summary with XP earned",
+      "pages": [
+        "Projects: Overload"
+      ]
+    },
+    "flipper-discover": {
+      "file": "projects/flipper/m1-web-discover",
+      "alt": "Flipper Alerts web prototype Discover feed showing sample listings labelled sample data",
+      "pages": [
+        "Projects: Flipper Alerts"
+      ],
+      "fit": "contain"
+    },
+    "flipper-profit": {
+      "file": "projects/flipper/m1-web-actual-profit",
+      "alt": "Flipper Alerts prototype screen tracking realized profit on a sample flip",
+      "pages": [
+        "Projects: Flipper Alerts"
+      ],
+      "fit": "contain"
+    },
+    "mesonet-filters": {
+      "file": "projects/mesonet/octave-magnitude",
+      "alt": "Plot of ten full-octave Butterworth bandpass filters from 31.5 Hz to 16 kHz, each flat at 0 dB with -3 dB edges",
+      "pages": [
+        "Projects: Mesonet sound meter"
+      ],
+      "fit": "contain"
+    },
+    "mesonet-group-delay": {
+      "file": "projects/mesonet/octave-group-delay",
+      "alt": "Plot of group delay for each full-octave filter band",
+      "pages": [
+        "Projects: Mesonet sound meter"
+      ],
+      "fit": "contain"
+    },
+    "mesonet-cad": {
+      "file": "projects/mesonet/imm6-cad",
+      "alt": "3D CAD model of the Dayton Audio iMM-6 microphone",
+      "pages": [
+        "Projects: Mesonet sound meter"
+      ]
+    }
+  }
+}

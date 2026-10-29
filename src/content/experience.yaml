@@ -1,0 +1,113 @@
+# Experience page entries. Each entry needs a unique id.
+# section: Education | Research & design | Work | Leadership & community | Awards & honors
+# order: lower numbers appear first within a section.
+
+- id: bs-ece
+  section: Education
+  order: 1
+  title: B.S. Electrical & Computer Engineering
+  org: University at Albany, State University of New York
+  place: Albany, NY
+  period: Aug 2022 – Dec 2026 (expected)
+  bullets:
+    - "Minor: Mathematics & Computer Science"
+    - Dean's List of Distinguished Students
+    - Took part in UAlbany's 2026 Commencement in May 2026
+
+- id: surp
+  section: Research & design
+  order: 1
+  title: Undergraduate Researcher, Summer Undergraduate Research Program
+  org: College of Nanotechnology, Science, and Engineering, University at Albany
+  place: Albany, NY
+  period: Jun – Aug 2025
+  project: haptic-vest
+  bullets:
+    - Designed and built a vision-based haptic vest that helps visually impaired people navigate, mentored by Aishwari Talhan.
+    - Ran object detection and monocular depth estimation together on a Raspberry Pi 5 with a Hailo-8 AI accelerator.
+    - Trained a custom YOLOv8 model to recognize staircases, exit signs and doors.
+    - Presented the vest at the SURP poster session on Aug 7, 2025; the work was featured by UAlbany News.
+  link:
+    label: UAlbany News article
+    url: https://www.albany.edu/news-center/news/2025-undergrad-research-project-develops-haptics-assist-visually-impaired
+
+- id: senior-design
+  section: Research & design
+  order: 2
+  title: Senior Design Team Member, Low-Cost Environmental Sound Monitoring
+  org: UAlbany ECE senior design, for the New York State Mesonet
+  place: Albany, NY
+  period: Fall 2026 (in progress)
+  project: mesonet-sound-meter
+  bullets:
+    - Converting the team's Raspberry Pi sound level meter from third-octave to full-octave analysis so it matches the reference meter.
+    - Wrote a Python filter-bank tool (fourth-order Butterworth, SOS form) that generates the design report's filter figures and validates each band with test tones.
+
+- id: resident-assistant
+  section: Work
+  order: 1
+  title: Resident Assistant
+  org: Department of Residential Life, University at Albany
+  place: Albany, NY
+  period: Aug 2023 – present
+  bullets:
+    - Responsible for a community of about 40 first-year residents, and back up other RAs when needed.
+    - Write detailed incident reports and handle front-desk customer service and office tasks.
+    - Interview RA candidates and give hiring recommendations.
+
+- id: acuta
+  section: Work
+  order: 2
+  title: Technology Development Intern
+  org: Acuta Digital
+  place: Remote
+  period: Aug – Sep 2023
+  bullets:
+    - Moved 300 videos and 600 data points during a website migration.
+    - Broke the migration into manageable tasks and planned the work to meet deadlines.
+
+- id: nsbe
+  section: Leadership & community
+  order: 1
+  title: Member
+  org: National Society of Black Engineers (NSBE), UAlbany
+  period: College
+
+- id: band
+  section: Leadership & community
+  order: 2
+  title: Member
+  org: UAlbany Marching & Spirit Band
+  period: College
+
+- id: hackathon
+  section: Awards & honors
+  order: 1
+  title: 3rd Place, Hack-A-Damien 2025
+  org: For the Solfège Note Memory Game, built with a teammate
+  period: Feb 2025
+  project: solfege-memory-game
+
+- id: news
+  section: Awards & honors
+  order: 2
+  title: Research featured by UAlbany News
+  org: '"2025 undergrad research project develops haptics to assist visually impaired"'
+  period: Sep 2025
+  link:
+    label: Read the article
+    url: https://www.albany.edu/news-center/news/2025-undergrad-research-project-develops-haptics-assist-visually-impaired
+
+- id: deans-list
+  section: Awards & honors
+  order: 3
+  title: Dean's List of Distinguished Students
+  org: University at Albany
+  period: College
+
+- id: vanross
+  section: Awards & honors
+  order: 4
+  title: VanRoss Foundation Scholarship
+  org: The VanRoss Foundation
+  period: 2022 – 2023

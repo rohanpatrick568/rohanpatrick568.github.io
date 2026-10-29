@@ -1,0 +1,39 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPosts, formatDate } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+const words = post.body?.split(/\s+/).length ?? 0;
+const minutes = Math.max(1, Math.round(words / 220));
+---
+<BaseLayout title={post.data.title} description={post.data.description} type="article" publishedTime={post.data.pubDate}>
+  <article class="wrap-text post">
+    <header>
+      <p class="eyebrow"><a href="/blog/">Blog</a></p>
+      <h1>{post.data.title}</h1>
+      <p class="meta">
+        <time datetime={post.data.pubDate.toISOString().slice(0, 10)}>{formatDate(post.data.pubDate)}</time>
+        {post.data.updatedDate && <> · Updated <time datetime={post.data.updatedDate.toISOString().slice(0, 10)}>{formatDate(post.data.updatedDate)}</time></>}
+        {' '}· {minutes} min read
+      </p>
+    </header>
+    <div class="prose"><Content /></div>
+    <footer class="post__foot">
+      <a class="more" href="/blog/">All posts</a>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .post { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+  .post h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); }
+  .eyebrow a { text-decoration: none; }
+  .meta { color: var(--ink-3); font-weight: 500; margin-bottom: 2.5rem; }
+  .post__foot { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+</style>

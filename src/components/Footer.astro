@@ -1,0 +1,43 @@
+---
+import { NAV, SITE, SOCIALS, CONTACT } from '../config/site';
+import Icon from './Icon.astro';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="footer-title">{SITE.name}</p>
+      <p class="footer-line">{SITE.headline} · Albany, New York</p>
+      <p class="footer-line"><a href={`mailto:${CONTACT.emails[0].address}`}>{CONTACT.emails[0].address}</a></p>
+    </div>
+    <nav aria-label="Footer">
+      <ul class="footer-nav">
+        {NAV.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+    <ul class="footer-socials" aria-label="Elsewhere">
+      {SOCIALS.map((s) => (
+        <li>
+          <a href={s.href} target={s.href.startsWith('http') ? '_blank' : undefined} rel={s.href.startsWith('http') ? 'me noopener' : undefined}>
+            <Icon name={s.icon} size={20} /> {s.label}
+          </a>
+        </li>
+      ))}
+      <li><a href="/blog/rss.xml"><Icon name="rss" size={20} /> RSS</a></li>
+    </ul>
+  </div>
+  <p class="wrap copyright">© {year} {SITE.name}. Built with Astro and hosted free on GitHub Pages.</p>
+</footer>
+
+<style>
+  .site-footer { border-top: 1px solid var(--line); padding-block: 3rem 2rem; margin-top: 2rem; font-size: 0.98rem; }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2rem; }
+  .footer-title { font-weight: 800; font-size: 1.2rem; margin-bottom: 0.4rem; }
+  .footer-line { margin: 0 0 0.3rem; color: var(--ink-2); }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+  a { text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .footer-socials a { display: inline-flex; gap: 0.6rem; align-items: center; }
+  .copyright { color: var(--ink-3); font-size: 0.88rem; margin-top: 2.5rem; }
+  @media (max-width: 48rem) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-grid > div:first-child { grid-column: 1 / -1; } }
+</style>
