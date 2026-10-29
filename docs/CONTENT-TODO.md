@@ -26,7 +26,7 @@ Still missing. None of these were on your phone:
 
 The framing guidance for each photo is in `src/data/photos.json` and on the placeholders themselves. For the poster photo, if you use the UAlbany News picture, ask the News Center first.
 
-**Not on the site yet:** your Undergraduate Showcase poster, "Computer Vision Based Water Level Monitoring for Semiconductor Coolant Reservoirs" (spring 2026). Photos of you presenting it are on your phone (Messages, saved May 1, 2026) and could become a project page.
+**Coolant level monitor (new project page):** written from the text of your UAlbany Showcase poster. Please check the role line, the Spring 2026 date, and whether you want the industry partner named (the poster names it; the page doesn't, like your other client work). Your own part in the team isn't described yet because the poster doesn't say who did what. Add it under "What it is" if you'd like.
 
 ## Information that would add depth
 

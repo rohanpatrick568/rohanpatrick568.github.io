@@ -48,6 +48,17 @@
         "About (timeline)"
       ]
     },
+    "coolant-poster": {
+      "file": "photos/coolant-poster",
+      "alt": "Rohan beside the coolant level monitoring poster at the UAlbany Showcase, spring 2026",
+      "what": "You presenting the coolant level monitor poster at the UAlbany Showcase",
+      "why": "Shows the project and you explaining it.",
+      "ratio": "3:2",
+      "framing": "Landscape, you and the poster in frame.",
+      "pages": [
+        "Projects: Computer vision coolant level monitor"
+      ]
+    },
     "mesonet-hardware": {
       "file": "photos/mesonet-hardware",
       "alt": "Prototype sound level meter: Raspberry Pi 4B, Dayton Audio iMM-6 microphone and USB audio interface",
