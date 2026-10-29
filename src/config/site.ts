@@ -2,13 +2,14 @@
 
 export const SITE = {
   name: 'Rohan Patrick Jr.',
-  // What most people call me; shown in the intros and given to search engines.
+  // What most people call me. The full name stays first in titles; these help people who search for RJ.
   nickname: 'RJ',
+  alternateNames: ['RJ', 'RJ Patrick'],
   // Shown in the centre of the header, like the reference design.
   title: "Rohan Patrick Jr.'s Portfolio",
   headline: 'Electrical & Computer Engineer',
   description:
-    'Rohan Patrick Jr. is an Electrical & Computer Engineering student at the University at Albany who builds hardware, embedded, and machine-learning projects.',
+    'Rohan Patrick Jr. (RJ Patrick) is an Electrical & Computer Engineering student at the University at Albany who builds hardware, embedded, and machine-learning projects.',
   url: 'https://rohanpatrick568.github.io',
   locale: 'en_US',
 
