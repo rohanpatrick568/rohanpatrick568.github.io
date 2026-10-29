@@ -6,27 +6,27 @@ Run `npm run photos` at any time to see which photos are still missing.
 
 ## Before you make the site public
 
-1. **Portrait photo** → `src/assets/photos/portrait.jpg` (4:5, chest-up, natural light, looking at the camera). It's the first thing on the Home and About pages.
-2. **Decide on placeholder labels.** If some photos are still missing at launch, set `showPlaceholderNotes: false` in `src/config/site.ts` so visitors see a neutral panel instead of instructions.
-3. **Check every page once for accuracy.** Each claim comes from your resume, reports, repos or the UAlbany News article. Please read the items under "Please confirm" below especially.
+1. **Decide on placeholder labels.** If some photos are still missing at launch, set `showPlaceholderNotes: false` in `src/config/site.ts` so visitors see a neutral panel instead of instructions.
+2. **Check every page once for accuracy.** Each claim comes from your resume, reports, repos or the UAlbany News article. Please read the items under "Please confirm" below especially.
 
 ## Photos, by impact
 
+Added from your phone (Oct 29, 2026): portrait, haptic vest, vest electronics, band and NSBE. The vest photo shows the vest on its own, so if you get one of you wearing it, save it over `src/assets/photos/vest-wearing.jpg` and change its `alt` in `src/data/photos.json`.
+
+Still missing. None of these were on your phone:
+
 | Priority | Photo | Where | Crop | Save as |
 | --- | --- | --- | --- | --- |
-| 1 | Portrait | Home hero, About | 4:5 | `src/assets/photos/portrait.jpg` |
-| 2 | You wearing or holding the haptic vest | Home, Haptic vest | 4:3 | `src/assets/photos/vest-wearing.jpg` |
-| 3 | Sound level meter hardware (Pi, iMM-6, interface) | Home, Mesonet sound meter | 4:3 | `src/assets/photos/mesonet-hardware.jpg` |
-| 4 | Presenting at the SURP poster session, Aug 7, 2025 | Haptic vest | 3:2 | `src/assets/photos/vest-poster.jpg` |
-| 5 | Close-up of the vest electronics | Haptic vest | 4:3 | `src/assets/photos/vest-detail.jpg` |
-| 6 | Terminal output of NN-in-C predicting a digit | Neural network in C | 16:9 | `src/assets/photos/nn-terminal.jpg` |
-| 7 | MSP430 memory game board | MSP430 memory game | 4:3 | `src/assets/photos/msp430-game.jpg` |
-| 8 | Solfège game screenshot or demo photo | Solfège memory game | 16:9 | `src/assets/photos/solfege-game.jpg` |
-| 9 | With the Marching & Spirit Band | About | 3:2 | `src/assets/photos/band.jpg` |
-| 10 | At an NSBE event | About | 3:2 | `src/assets/photos/community.jpg` |
-| 11 | Working on a side project, or a hobby | About | 1:1 | `src/assets/photos/hobby.jpg` |
+| 1 | Sound level meter hardware (Pi, iMM-6, interface) | Home, Mesonet sound meter | 4:3 | `src/assets/photos/mesonet-hardware.jpg` |
+| 2 | Presenting at the SURP poster session, Aug 7, 2025 | Haptic vest | 3:2 | `src/assets/photos/vest-poster.jpg` |
+| 3 | Terminal output of NN-in-C predicting a digit | Neural network in C | 16:9 | `src/assets/photos/nn-terminal.jpg` |
+| 4 | MSP430 memory game board | MSP430 memory game | 4:3 | `src/assets/photos/msp430-game.jpg` |
+| 5 | Solfège game screenshot or demo photo | Solfège memory game | 16:9 | `src/assets/photos/solfege-game.jpg` |
+| 6 | Working on a side project, or a hobby | About | 1:1 | `src/assets/photos/hobby.jpg` |
 
 The framing guidance for each photo is in `src/data/photos.json` and on the placeholders themselves. For the poster photo, if you use the UAlbany News picture, ask the News Center first.
+
+**Not on the site yet:** your Undergraduate Showcase poster, "Computer Vision Based Water Level Monitoring for Semiconductor Coolant Reservoirs" (spring 2026). Photos of you presenting it are on your phone (Messages, saved May 1, 2026) and could become a project page.
 
 ## Information that would add depth
 

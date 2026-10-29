@@ -15,7 +15,7 @@
     },
     "vest-wearing": {
       "file": "photos/vest-wearing",
-      "alt": "Rohan wearing the vision-based haptic vest prototype",
+      "alt": "The vision-based haptic vest prototype with its chest-mounted camera",
       "what": "You wearing or holding the haptic vest",
       "why": "Shows the vest is a real, wearable build and that you made it.",
       "ratio": "4:3",
@@ -27,7 +27,7 @@
     },
     "vest-detail": {
       "file": "photos/vest-detail",
-      "alt": "Close-up of the haptic vest electronics: Raspberry Pi 5, Hailo-8 AI HAT+ and vibration motors",
+      "alt": "Close-up of the haptic vest electronics: Raspberry Pi 5 with the Hailo-8 AI HAT+ and camera ribbon cable",
       "what": "A close-up of the vest electronics",
       "why": "Lets engineers see the hardware: Pi 5, Hailo-8 HAT, DRV2605L drivers and motors.",
       "ratio": "4:3",
@@ -106,7 +106,7 @@
     },
     "community": {
       "file": "photos/community",
-      "alt": "Rohan at an NSBE event",
+      "alt": "Rohan at the NSBE 2026 Annual Convention",
       "what": "You at an NSBE event or convention",
       "why": "Shows the community you're part of.",
       "ratio": "3:2",
