@@ -137,7 +137,7 @@ const updates = await getUpdates();
 
 <style>
   .intro { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: center; }
-  .intro p { font-size: 1.3rem; }
+  .intro > div:first-child p { font-size: 1.3rem; }
   .intro__photo { border-radius: var(--radius-photo); overflow: hidden; }
   .intro__photo :global(.photo__frame) { border-radius: var(--radius-photo); }
   .story { padding-top: 1rem; }

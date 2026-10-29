@@ -74,14 +74,17 @@ const fit = fitProp ?? entry.fit ?? 'cover';
     position: relative; display: grid; place-items: center; text-align: left;
     border: 2px dashed #c5cad4; background:
       radial-gradient(circle at 1px 1px, #dfe2e8 1px, transparent 0) 0 0 / 18px 18px, var(--paper-2);
-    min-height: 12rem; padding: clamp(1rem, 3vw, 2rem);
+    padding: clamp(1rem, 3vw, 2rem);
+    /* Let the frame grow past its ratio when the notes need more room (narrow screens). */
+    overflow: visible;
   }
   .placeholder :global(.placeholder__art) { position: absolute; width: 42%; max-width: 11rem; opacity: 0.16; right: 6%; bottom: 6%; }
   .placeholder__note { text-decoration: none; position: relative; max-width: 26rem; font-size: 0.92rem; line-height: 1.5; color: var(--ink-2); }
-  .placeholder__note p { margin: 0 0 0.45rem; }
-  .placeholder__eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
-  .placeholder__what { font-weight: 700; font-size: 1.05rem; color: var(--ink); }
+  /* Reset page-level paragraph styles (e.g. .page-head p) so notes look the same everywhere. */
+  .placeholder__note p { margin: 0 0 0.45rem; font-size: 1em; max-width: none; color: inherit; }
+  .placeholder__note .placeholder__eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+  .placeholder__note .placeholder__what { font-weight: 700; font-size: 1.05rem; color: var(--ink); }
   .placeholder__spec span { display: block; }
   .placeholder__spec span:first-child { font-weight: 600; }
-  .placeholder__file code { font-size: 0.8rem; word-break: break-all; background: #fff; padding: 0.1rem 0.3rem; border-radius: 0.25rem; }
+  .placeholder__file code { display: block; width: fit-content; max-width: 100%; margin-top: 0.2rem; font-size: 0.78rem; overflow-wrap: anywhere; background: #fff; padding: 0.1rem 0.3rem; border-radius: 0.25rem; }
 </style>

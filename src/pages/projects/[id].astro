@@ -44,7 +44,7 @@ const gallery = d.gallery.filter((g) => isPhotoKey(g.photo));
     </header>
 
     <div class:list={['cover wrap', { 'cover--screens': isScreens }]}>
-      <ProjectVisual project={project} ratio={isScreens ? '16:10' : '16:9'} sizes="(min-width: 72rem) 72rem, 100vw" loading="eager" />
+      <ProjectVisual project={project} ratio={isScreens ? '16:10' : project.data.cover ? '16:9' : '5:2'} sizes="(min-width: 72rem) 72rem, 100vw" loading="eager" />
     </div>
 
     <div class="body wrap-text">

@@ -70,7 +70,7 @@ p { margin: 0 0 1.1em; }
   min-height: 2.9rem; padding: 0.7rem 1.6rem;
   background: var(--navy); color: #fff;
   border: 2px solid var(--navy); border-radius: 0.6rem;
-  font: 600 0.95rem/1 var(--font); letter-spacing: 0.08em; text-transform: uppercase;
+  font: 600 0.95rem/1.25 var(--font); letter-spacing: 0.08em; text-transform: uppercase;
   text-decoration: none; cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
