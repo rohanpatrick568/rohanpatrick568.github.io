@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Photo from '../components/Photo.astro';
 import LineArt from '../components/LineArt.astro';
 import ProjectVisual from '../components/ProjectVisual.astro';
+import Icon from '../components/Icon.astro';
+import { SITE } from '../config/site';
 import { getFeaturedProjects, getProjects, getUpdates, formatDate } from '../lib/content';
 
 const featured = await getFeaturedProjects();
@@ -29,6 +31,9 @@ const [latest] = await getUpdates();
         <a class="btn" href="/projects/">Projects</a>
         <a class="btn" href="/experience/">Experience</a>
         <a class="btn" href="/contact/">Contact</a>
+        {SITE.resumePdf && (
+          <a class="btn" href={SITE.resumePdf} download={SITE.resumeFileName}><Icon name="download" size={18} /> Resume</a>
+        )}
       </div>
     </div>
   </section>

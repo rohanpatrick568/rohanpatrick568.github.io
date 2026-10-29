@@ -32,7 +32,6 @@ The framing guidance for each photo is in `src/data/photos.json` and on the plac
 
 These were left out because I had no source for them. Add any you'd like public:
 
-- **Resume PDF** without your phone number or address → `public/resume.pdf`, then set `resumePdf: '/resume.pdf'` in `src/config/site.ts`.
 - **Hobbies and interests outside engineering.** The About page currently covers music (band), community (RA, NSBE) and your side projects. Tell me what you do for fun and it can get its own line.
 - **Your instrument** in the Marching & Spirit Band.
 - **NN-in-C test accuracy.** The page describes the network (784-64-10) but gives no accuracy, because I couldn't find a recorded result. If you run it, add the number and a screenshot.

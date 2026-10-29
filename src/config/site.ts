@@ -20,7 +20,9 @@ export const SITE = {
 
   // Put your resume at public/resume.pdf and set this to '/resume.pdf'.
   // While it is null, no download button is shown anywhere.
-  resumePdf: null as string | null,
+  resumePdf: '/resume.pdf' as string | null,
+  // The file name visitors' browsers save it as.
+  resumeFileName: 'Rohan-Patrick-Jr-Resume.pdf',
 };
 
 export const CONTACT = {

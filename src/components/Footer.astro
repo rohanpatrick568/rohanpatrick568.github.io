@@ -23,6 +23,7 @@ const year = new Date().getFullYear();
           </a>
         </li>
       ))}
+      {SITE.resumePdf && <li><a href={SITE.resumePdf} download={SITE.resumeFileName}><Icon name="download" size={20} /> Resume (PDF)</a></li>}
       <li><a href="/blog/rss.xml"><Icon name="rss" size={20} /> RSS</a></li>
     </ul>
   </div>

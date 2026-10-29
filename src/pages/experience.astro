@@ -15,7 +15,7 @@ const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     <h1>Experience.</h1>
     <p>Where I've studied, researched and worked, and what I can do. This page doubles as my resume.</p>
     {SITE.resumePdf && (
-      <a class="btn" href={SITE.resumePdf} download><Icon name="download" size={18} /> Download resume (PDF)</a>
+      <a class="btn" href={SITE.resumePdf} download={SITE.resumeFileName}><Icon name="download" size={18} /> Download resume (PDF)</a>
     )}
   </header>
 

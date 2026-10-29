@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LineArt from '../components/LineArt.astro';
 import Icon from '../components/Icon.astro';
-import { CONTACT, SOCIALS } from '../config/site';
+import { CONTACT, SITE, SOCIALS } from '../config/site';
 const web = SOCIALS.filter((s) => s.href.startsWith('http'));
 ---
 <BaseLayout title="Contact" description="How to reach Rohan Patrick Jr. (RJ): email, LinkedIn and GitHub.">
@@ -24,6 +24,12 @@ const web = SOCIALS.filter((s) => s.href.startsWith('http'));
           <a class="way" href={s.href} target="_blank" rel="me noopener"><Icon name={s.icon} /> {s.href.replace(/^https:\/\/(www\.)?/, '')}<span class="sr-only"> (opens in a new tab)</span></a>
         </li>
       ))}
+      {SITE.resumePdf && (
+        <li>
+          <p class="eyebrow">Resume</p>
+          <a class="way" href={SITE.resumePdf} download={SITE.resumeFileName}><Icon name="download" /> Download resume (PDF)</a>
+        </li>
+      )}
     </ul>
     <LineArt name="mcu-board" class="art" />
   </div>
