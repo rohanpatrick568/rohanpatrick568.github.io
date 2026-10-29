@@ -2,6 +2,8 @@
 
 export const SITE = {
   name: 'Rohan Patrick Jr.',
+  // What most people call me; shown in the intros and given to search engines.
+  nickname: 'RJ',
   // Shown in the centre of the header, like the reference design.
   title: "Rohan Patrick Jr.'s Portfolio",
   headline: 'Electrical & Computer Engineer',
