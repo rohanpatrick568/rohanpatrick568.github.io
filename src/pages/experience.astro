@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
+import Photo from '../components/Photo.astro';
+import type { PhotoKey } from '../lib/photos';
 import { SITE } from '../config/site';
 import { SKILLS, COURSEWORK } from '../data/skills';
 
@@ -39,6 +41,9 @@ const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
                 <div>
                   <h3>{e.data.title}</h3>
                   <p class="entry__org">{e.data.org}{e.data.place && <span> · {e.data.place}</span>}</p>
+                  {e.data.photo && (
+                    <Photo photo={e.data.photo as PhotoKey} class="entry__photo" sizes="(min-width: 40rem) 28rem, 100vw" widths={[480, 800, 1200]} />
+                  )}
                   {e.data.bullets.length > 0 && <ul class="entry__bullets">{e.data.bullets.map((b) => <li>{b}</li>)}</ul>}
                   <p class="entry__links">
                     {e.data.project && <a class="more" href={`/projects/${e.data.project}/`}>See the project</a>}
@@ -84,6 +89,7 @@ const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   .entry__when { color: var(--ink-3); font-weight: 600; font-size: 0.95rem; padding-top: 0.15rem; }
   .entry h3 { margin-bottom: 0.25rem; }
   .entry__org { color: var(--ink-2); margin-bottom: 0.6rem; }
+  .entry :global(.entry__photo) { max-width: 28rem; margin: 0.4rem 0 1rem; border-radius: var(--radius); overflow: hidden; }
   .entry__bullets { padding-left: 1.2rem; margin: 0 0 0.6rem; color: var(--ink-2); }
   .entry__bullets li { margin-bottom: 0.35rem; }
   .entry__links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin: 0; }

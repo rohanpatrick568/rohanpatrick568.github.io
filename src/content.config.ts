@@ -71,6 +71,8 @@ const experience = defineCollection({
     bullets: z.array(z.string()).default([]),
     link: link.optional(),
     project: z.string().optional(),
+    // A key from src/data/photos.json shown with the entry.
+    photo: z.string().optional(),
   }),
 });
 

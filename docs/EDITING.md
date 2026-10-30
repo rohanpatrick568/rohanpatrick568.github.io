@@ -106,7 +106,7 @@ When something big happens (a new job, graduation), also:
 
 ## Edit your experience
 
-`src/content/experience.yaml` holds every entry on the Experience page. Each entry has an `id`, a `section` (Education, Research & design, Work, Leadership & community or Awards & honors), an `order` within that section, `title`, `org`, `period`, optional `place`, `bullets` and `link`, and optional `project` (a project file name, which adds a "See the project" link).
+`src/content/experience.yaml` holds every entry on the Experience page. Each entry has an `id`, a `section` (Education, Research & design, Work, Leadership & community or Awards & honors), an `order` within that section, `title`, `org`, `period`, optional `place`, `bullets` and `link`, optional `project` (a project file name, which adds a "See the project" link), and optional `photo` (a key from `src/data/photos.json`, shown under the entry).
 
 Skills and coursework are in `src/data/skills.ts`.
 

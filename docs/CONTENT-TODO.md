@@ -23,6 +23,7 @@ Still missing. None of these were on your phone:
 | 4 | MSP430 memory game board | MSP430 memory game | 4:3 | `src/assets/photos/msp430-game.jpg` |
 | 5 | Solfège game screenshot or demo photo | Solfège memory game | 16:9 | `src/assets/photos/solfege-game.jpg` |
 | 6 | Working on a side project, or a hobby | About | 1:1 | `src/assets/photos/hobby.jpg` |
+| 7 | The Kristt Kelly store: storefront with the sign, or the copy center | Experience (Work) | 3:2 | `src/assets/photos/kristt-kelly.jpg` |
 
 The framing guidance for each photo is in `src/data/photos.json` and on the placeholders themselves. For the poster photo, if you use the UAlbany News picture, ask the News Center first.
 
