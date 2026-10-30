@@ -43,6 +43,16 @@
     - Converting the team's Raspberry Pi sound level meter from third-octave to full-octave analysis so it matches the reference meter.
     - Wrote a Python filter-bank tool (fourth-order Butterworth, SOS form) that generates the design report's filter figures and validates each band with test tones.
 
+- id: kristt-kelly
+  section: Work
+  order: 0
+  title: Copy Center & Checkout Associate
+  org: Kristt Kelly
+  period: Jul – Oct 2026
+  bullets:
+    - Ran printing and copying jobs for customers in the store's copy center.
+    - Worked the front checkout, ringing up sales and helping customers.
+
 - id: resident-assistant
   section: Work
   order: 1
