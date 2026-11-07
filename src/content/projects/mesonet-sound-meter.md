@@ -11,6 +11,8 @@ featured: 2
 cover: mesonet-hardware
 art: sound-meter
 gallery:
+  - photo: mesonet-field
+    caption: Our team at a New York State Mesonet station, where the sound level meter is meant to be installed.
   - photo: mesonet-filters
     caption: The ten full-octave bands from my filter-bank script, 31.5 Hz to 16 kHz. Each band is flat at 0 dB and crosses its neighbor at -3 dB.
   - photo: mesonet-group-delay

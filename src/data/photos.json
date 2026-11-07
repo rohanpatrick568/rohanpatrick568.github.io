@@ -61,13 +61,21 @@
     },
     "mesonet-hardware": {
       "file": "photos/mesonet-hardware",
-      "alt": "Prototype sound level meter: Raspberry Pi 4B, Dayton Audio iMM-6 microphone and USB audio interface",
+      "alt": "The team's prototype sound level meter: a Raspberry Pi with a small screen showing a live spectrum, the USB audio interface, and a breadboard that connects the microphone",
       "what": "The senior-design sound level meter hardware",
       "why": "Shows the physical system behind the filter work.",
       "ratio": "4:3",
       "framing": "Landscape. Pi, microphone and interface together; the reference meter beside it if possible.",
       "pages": [
         "Home (selected work)",
+        "Projects: Mesonet sound meter"
+      ]
+    },
+    "mesonet-field": {
+      "file": "projects/mesonet/field",
+      "alt": "Three members of the senior design team standing in the grass at a New York State Mesonet weather station, with the instrument tower behind them",
+      "ratio": "4:3",
+      "pages": [
         "Projects: Mesonet sound meter"
       ]
     },

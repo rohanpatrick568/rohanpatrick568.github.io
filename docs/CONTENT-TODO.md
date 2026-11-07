@@ -17,7 +17,6 @@ Still missing. None of these were on your phone:
 
 | Priority | Photo | Where | Crop | Save as |
 | --- | --- | --- | --- | --- |
-| 1 | Sound level meter hardware (Pi, iMM-6, interface) | Home, Mesonet sound meter | 4:3 | `src/assets/photos/mesonet-hardware.jpg` |
 | 2 | Presenting at the SURP poster session, Aug 7, 2025 | Haptic vest | 3:2 | `src/assets/photos/vest-poster.jpg` |
 | 3 | Terminal output of NN-in-C predicting a digit | Neural network in C | 16:9 | `src/assets/photos/nn-terminal.jpg` |
 | 4 | MSP430 memory game board | MSP430 memory game | 4:3 | `src/assets/photos/msp430-game.jpg` |
