@@ -48,7 +48,7 @@ These were left out because I had no source for them. Add any you'd like public:
 - **Acuta Digital:** the title "Technology Development Intern," Aug to Sep 2023, and the 300 videos and 600 data points.
 - **Hack-A-Damien 2025:** 3rd place, built with one teammate (not named).
 - **Minor:** Mathematics & Computer Science.
-- **Side projects** (Overload, Job Agent, Flipper Alerts) carry the note you approved: "This is one of the side projects I use to explore what I'm curious about. I built it with AI pair-programming tools; I decided what it should do, directed the work, and tested it."
+- **Side projects** (Overload, Flipper Alerts) carry the note you approved: "This is one of the side projects I use to explore what I'm curious about. I built it with AI pair-programming tools; I decided what it should do, directed the work, and tested it."
 - **Both emails** (rpatrick@albany.edu and patrickrohan6@gmail.com) are shown on the Contact page, as you asked. Your university email may stop working after graduation, so you may want to drop it later in `src/config/site.ts`.
 
 ## Deliberately left off the site
