@@ -123,6 +123,8 @@ const [latest] = await getUpdates();
     }
   }
   .hero__photo :global(.photo), .hero__photo :global(.photo__frame) { border-radius: var(--radius-photo); }
+  /* Mirrored on the home page only, so rj faces into the page toward the headline. */
+  .hero__photo :global(img) { transform: scaleX(-1); }
   .hero__text { position: relative; text-align: center; padding-block: 3rem; }
   .hero__text h1 { position: relative; z-index: 1; font-size: clamp(2.3rem, 4.6vw, 3.9rem); }
   .hero__text p { position: relative; z-index: 1; font-size: 1.12rem; color: var(--ink-2); max-width: 34rem; margin-inline: auto; }
