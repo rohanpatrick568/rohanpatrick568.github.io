@@ -73,6 +73,8 @@ const experience = defineCollection({
     project: z.string().optional(),
     // A key from src/data/photos.json shown with the entry.
     photo: z.string().optional(),
+    // Optional caption or photo credit shown under that photo.
+    photoCaption: z.string().optional(),
   }),
 });
 
