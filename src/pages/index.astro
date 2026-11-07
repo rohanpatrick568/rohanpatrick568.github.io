@@ -111,6 +111,17 @@ const [latest] = await getUpdates();
     align-items: center; padding-block: clamp(2rem, 7vw, 6rem) clamp(2rem, 6vw, 5rem);
   }
   .hero__photo { border-radius: var(--radius-photo); overflow: hidden; }
+  /* Side-by-side layout: keep the whole portrait above the fold. The text column is
+     taller than the photo, so centring pushed the photo's bottom off-screen. Pin it to
+     the top and cap its width so its 4:5 height fits under the 72px sticky header,
+     the hero's top padding and a 2rem margin. */
+  @media (min-width: 64.01rem) {
+    .hero__photo {
+      align-self: start; justify-self: center; width: 100%;
+      max-width: max(20rem, calc((100vh - 72px - clamp(2rem, 7vw, 6rem) - 2rem) * 0.8));
+      max-width: max(20rem, calc((100svh - 72px - clamp(2rem, 7vw, 6rem) - 2rem) * 0.8));
+    }
+  }
   .hero__photo :global(.photo), .hero__photo :global(.photo__frame) { border-radius: var(--radius-photo); }
   .hero__text { position: relative; text-align: center; padding-block: 3rem; }
   .hero__text h1 { position: relative; z-index: 1; font-size: clamp(2.3rem, 4.6vw, 3.9rem); }
